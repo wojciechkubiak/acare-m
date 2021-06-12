@@ -1,15 +1,12 @@
-import 'package:anima/config/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'blocs/auth/auth_bloc.dart';
 
-import 'services/services.dart';
-
-import './../pages/loading.dart';
-import './../pages/error.dart';
-import './../pages/splash_screen.dart';
+import './../services/services.dart';
+import './../pages/pages.dart';
+import 'blocs/login/login_bloc.dart';
 
 class MyApp extends StatefulWidget {
   MyApp({Key? key}) : super(key: key);
@@ -32,6 +29,11 @@ class _MyAppState extends State<MyApp> {
             return AuthService();
           },
         ),
+        RepositoryProvider<LoginService>(
+          create: (context) {
+            return LoginService();
+          },
+        ),
       ],
       child: _multiBlocProvider(),
     );
@@ -43,6 +45,12 @@ class _MyAppState extends State<MyApp> {
         create: (context) {
           final authService = RepositoryProvider.of<AuthService>(context);
           return AuthBloc(authService)..add(AuthLoadSplashScreen());
+        },
+      ),
+      BlocProvider<LoginBloc>(
+        create: (context) {
+          final loginService = RepositoryProvider.of<LoginService>(context);
+          return LoginBloc(loginService)..add(LoginInitialShow());
         },
       ),
     ], child: _main());
@@ -81,7 +89,7 @@ class _MyAppState extends State<MyApp> {
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
         if (state is AuthSuccess) return Text('Home');
-        if (state is AuthInitForm) return Text('Register');
+        if (state is AuthInitForm) return Login();
         if (state is AuthSplashScreen) return SplashScreen();
         if (state is AuthError) return Error();
         return Loading();

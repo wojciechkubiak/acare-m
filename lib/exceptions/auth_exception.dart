@@ -1,5 +1,7 @@
 class AuthException implements Exception {
-  final String message;
+  final dynamic message;
 
-  AuthException({this.message = 'Wystąpił nieznany błąd'});
+  AuthException({this.message = 'Wystąpił nieznany błąd'}) {
+    print('AuthException: $message');
+  }
 }

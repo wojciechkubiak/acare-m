@@ -17,3 +17,19 @@ class Auth {
     return data;
   }
 }
+
+class RefreshToken {
+  final String? access;
+
+  RefreshToken({required this.access});
+
+  factory RefreshToken.fromJson(Map<String, dynamic> json) {
+    return RefreshToken(access: json['access']);
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = {};
+    data['access'] = this.access;
+    return data;
+  }
+}
