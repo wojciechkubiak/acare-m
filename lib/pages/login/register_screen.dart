@@ -1,4 +1,5 @@
 import 'package:anima/blocs/login/login_bloc.dart';
+import 'package:anima/widgets/page_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,15 +15,71 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Stack(
-        children: [
-          CustomAppBar(
-            onBack: () =>
-                BlocProvider.of<LoginBloc>(context).add(LoginInitialShow()),
-          )
-        ],
-      ),
+    return PageBuilder(
+      onBack: () => BlocProvider.of<LoginBloc>(context).add(LoginInitialShow()),
+      page: _body(),
+    );
+  }
+
+  Widget _body() {
+    return Column(
+      children: [
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+        Text('test'),
+      ],
     );
   }
 }
