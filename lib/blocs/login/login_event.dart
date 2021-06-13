@@ -8,3 +8,5 @@ abstract class LoginEvent extends Equatable {
 }
 
 class LoginInitialShow extends LoginEvent {}
+
+class LoginRegisterShow extends LoginEvent {}

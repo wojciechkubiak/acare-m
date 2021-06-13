@@ -17,9 +17,14 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   @override
   Stream<LoginState> mapEventToState(LoginEvent event) async* {
     if (event is LoginInitialShow) yield* _mapAppShowLoginToState(event);
+    if (event is LoginRegisterShow) yield* _mapAppShowRegisterToState(event);
   }
 
   Stream<LoginState> _mapAppShowLoginToState(event) async* {
     yield LoginInitial();
+  }
+
+  Stream<LoginState> _mapAppShowRegisterToState(event) async* {
+    yield LoginRegister();
   }
 }
