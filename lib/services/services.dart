@@ -1,2 +1,1 @@
-export 'auth.dart';
-export 'login.dart';
+export 'home.dart';

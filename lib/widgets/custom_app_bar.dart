@@ -13,26 +13,27 @@ class CustomAppBar extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: 80,
-      decoration: BoxDecoration(color: Colors.white, boxShadow: [
-        BoxShadow(
-          blurRadius: 2,
-          color: Colors.black12,
-          spreadRadius: 2,
-          offset: Offset(1, 1),
-        )
-      ]),
+      color: Colors.white,
+      // decoration: BoxDecoration(color: Colors.white, boxShadow: [
+      //   BoxShadow(
+      //     blurRadius: 2,
+      //     color: Colors.black12,
+      //     spreadRadius: 2,
+      //     offset: Offset(1, 1),
+      //   )
+      // ]),
       child: Row(
         children: [
-          GestureDetector(
-            onTap: () => onBack(),
-            child: Container(
-              height: 80,
-              width: 50,
-              padding: EdgeInsets.only(top: 22),
-              child: Icon(
-                Icons.chevron_left,
+          Container(
+            height: 80,
+            width: 50,
+            padding: EdgeInsets.only(top: 22),
+            child: IconButton(
+              onPressed: () => onBack,
+              icon: Icon(
+                Icons.menu,
                 size: 42,
-                color: Colors.black54,
+                color: Colors.black87,
               ),
             ),
           ),

@@ -1,5 +1,3 @@
-export 'auth.dart';
-export 'error.dart';
-export 'loading.dart';
-export 'splash_screen.dart';
-export 'login.dart';
+export './splash_screen.dart';
+export './home.dart';
+export './loading.dart';
