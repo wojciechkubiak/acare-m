@@ -1,5 +1,5 @@
-import 'package:anima/config/colors.dart';
-import 'package:anima/pages/pages.dart';
+import 'package:peaceful_pet/config/colors.dart';
+import 'package:peaceful_pet/pages/pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

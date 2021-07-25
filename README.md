@@ -1,4 +1,4 @@
-# anima
+# peaceful_pet
 
 A new Flutter project.
 

@@ -1,6 +1,6 @@
 {
-    "name": "anima",
-    "short_name": "anima",
+    "name": "peaceful_pet",
+    "short_name": "peaceful_pet",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

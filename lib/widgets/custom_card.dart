@@ -1,4 +1,4 @@
-import 'package:anima/config/colors.dart';
+import 'package:peaceful_pet/config/colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomCard extends StatelessWidget {
@@ -37,6 +37,7 @@ class CustomCard extends StatelessWidget {
           childWhenDragging: Container(),
           onDragStarted: () => onDrag(),
           onDragCompleted: () => onDragEnd(),
+          onDragEnd: (_) => onDragEnd(),
         ),
       ),
     );

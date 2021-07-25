@@ -1,4 +1,4 @@
-import 'package:anima/config/colors.dart';
+import 'package:peaceful_pet/config/colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomRoundButton extends StatelessWidget {

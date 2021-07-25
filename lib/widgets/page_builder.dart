@@ -1,4 +1,4 @@
-import 'package:anima/config/colors.dart';
+import 'package:peaceful_pet/config/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:cupertino_will_pop_scope/cupertino_will_pop_scope.dart';
 

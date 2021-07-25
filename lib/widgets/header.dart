@@ -11,7 +11,7 @@ class Header extends StatelessWidget {
 
   const Header({
     Key? key,
-    this.text = 'Animacare',
+    this.text = 'Peaceful Pet',
     this.showBottomText = true,
     this.isWhite = false,
     this.fontWeight = FontWeight.w400,
@@ -35,7 +35,7 @@ class Header extends StatelessWidget {
           ),
           if (showBottomText)
             Text(
-              'Your loved ones diary',
+              'We make your pet calm',
               style: TextStyle(
                 fontSize: 10,
                 color: isWhite ? Colors.white70 : CustomColor.mainAccent,

@@ -1,5 +1,5 @@
-import 'package:anima/config/colors.dart';
-import 'package:anima/widgets/widgets.dart';
+import 'package:peaceful_pet/config/colors.dart';
+import 'package:peaceful_pet/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -121,7 +121,7 @@ class _HomeState extends State<Home> {
                 child: AnimatedPadding(
                   duration: Duration(milliseconds: 500),
                   padding:
-                      EdgeInsets.only(top: isDragged ? (5 * (index + 1)) : 0),
+                      EdgeInsets.only(top: isDragged ? (10 * (index + 1)) : 0),
                   child: CustomCard(
                     header: entry.value,
                     index: index + 1,

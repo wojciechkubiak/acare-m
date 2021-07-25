@@ -1,4 +1,4 @@
-package com.example.anima
+package com.example.peaceful_pet
 
 import io.flutter.embedding.android.FlutterActivity
 
