@@ -6,7 +6,6 @@ import 'widgets.dart';
 
 class PageBuilder extends StatefulWidget {
   final bool isAppBar;
-  final bool isNavigationVisible;
   final Widget page;
   final EdgeInsets margin;
   final ScrollController? controller;
@@ -15,9 +14,8 @@ class PageBuilder extends StatefulWidget {
   PageBuilder({
     Key? key,
     required this.page,
+    required this.onBack,
     this.controller,
-    this.onBack,
-    this.isNavigationVisible = false,
     this.isAppBar = false,
     this.margin = const EdgeInsets.only(left: 16, right: 16, bottom: 20),
   }) : super(key: key);
@@ -57,36 +55,9 @@ class _PageBuilderState extends State<PageBuilder> {
                 );
               }),
             ),
-            if (widget.isNavigationVisible)
-              Container(
-                width: double.infinity,
-                height: double.infinity,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () => print('left arr'),
-                      child: Icon(
-                        Icons.keyboard_arrow_left,
-                        color: Colors.black38,
-                        size: 48,
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () => print('right arr'),
-                      child: Icon(
-                        Icons.keyboard_arrow_right,
-                        color: Colors.black38,
-                        size: 48,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
             if (widget.isAppBar)
               CustomAppBar(
-                onBack: () => widget.onBack!(),
+                onBack: widget.onBack,
               ),
           ],
         ),

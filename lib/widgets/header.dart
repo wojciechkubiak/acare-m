@@ -5,6 +5,7 @@ import './../../config/colors.dart';
 class Header extends StatelessWidget {
   final String text;
   final bool showBottomText;
+  final bool isWhite;
   final FontWeight fontWeight;
   final EdgeInsets padding;
 
@@ -12,6 +13,7 @@ class Header extends StatelessWidget {
     Key? key,
     this.text = 'Animacare',
     this.showBottomText = true,
+    this.isWhite = false,
     this.fontWeight = FontWeight.w400,
     this.padding = EdgeInsets.zero,
   }) : super(key: key);
@@ -26,7 +28,7 @@ class Header extends StatelessWidget {
             text,
             style: TextStyle(
               fontSize: 46,
-              color: CustomColor.darkGreenAccent,
+              color: isWhite ? Colors.white : CustomColor.darkGreenAccent,
               fontFamily: 'Merienda',
               fontWeight: fontWeight,
             ),
@@ -34,7 +36,10 @@ class Header extends StatelessWidget {
           if (showBottomText)
             Text(
               'Your loved ones diary',
-              style: TextStyle(fontSize: 10, color: CustomColor.mainAccent),
+              style: TextStyle(
+                fontSize: 10,
+                color: isWhite ? Colors.white70 : CustomColor.mainAccent,
+              ),
             ),
         ],
       ),

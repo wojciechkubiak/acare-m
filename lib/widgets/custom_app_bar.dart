@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget {
-  final Function onBack;
+  final Function? onBack;
 
   const CustomAppBar({
     Key? key,
-    required this.onBack,
+    this.onBack,
   }) : super(key: key);
 
   @override
@@ -29,11 +29,11 @@ class CustomAppBar extends StatelessWidget {
             width: 50,
             padding: EdgeInsets.only(top: 22),
             child: IconButton(
-              onPressed: () => onBack,
+              onPressed: onBack != null ? () => onBack!() : null,
               icon: Icon(
                 Icons.menu,
-                size: 42,
-                color: Colors.black87,
+                size: 32,
+                color: Colors.black54,
               ),
             ),
           ),

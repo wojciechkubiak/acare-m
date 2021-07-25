@@ -3,114 +3,139 @@ import 'package:anima/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
-  Home({Key? key}) : super(key: key);
+  final Function? showMenu;
+
+  Home({
+    Key? key,
+    required this.showMenu,
+  }) : super(key: key);
 
   @override
   _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
+  List<String> options = ["Ukojenie", "Wkurwienie", "Odnerwienie"];
+  double opacity = 0;
+  bool isDragged = false;
+
   @override
   Widget build(BuildContext context) {
     return PageBuilder(
-      isNavigationVisible: true,
       isAppBar: true,
-      onBack: () => print('back'),
+      onBack: widget.showMenu,
       page: _body(),
     );
   }
 
-  Widget _body() {
-    return Column(
-      children: [
-        Header(
-          text: 'Chomik',
-          fontWeight: FontWeight.w600,
-          showBottomText: false,
-          padding: EdgeInsets.only(bottom: 32),
-        ),
-        _card(),
-      ],
-    );
-  }
+  void onDrag() => setState(() => opacity = 1);
 
-  Widget _card() {
+  void onDragEnd() => setState(() => opacity = 0);
+
+  Widget _body() {
+    double fullWidth = MediaQuery.of(context).size.width;
+    double fullWidthMargin = MediaQuery.of(context).size.width - 32;
+    double fullHeight = MediaQuery.of(context).size.height;
+    double cardTopMargin = 212;
+
     return Container(
-      width: double.infinity,
-      child: Card(
-        margin: EdgeInsets.symmetric(horizontal: 24),
-        elevation: 2,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Row(
+      width: fullWidth,
+      height: fullHeight,
+      child: Stack(
+        children: [
+          Positioned(
+            top: 112,
+            child: Container(
+              width: fullWidthMargin,
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Flexible(
-                    child: Text(
-                      'Ukojenie',
-                      style: TextStyle(
-                        fontSize: 28,
-                        color: Colors.black54,
-                        fontFamily: 'Merienda',
-                      ),
+                  GestureDetector(
+                    onTap: () => print('left arr'),
+                    child: CustomRoundButton(
+                      icon: Icons.keyboard_arrow_left,
+                      size: 32,
+                      isRound: true,
+                      hasShadow: false,
                     ),
                   ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.info, color: Colors.black54),
-                  )
+                  Header(
+                    text: 'Chomik',
+                    fontWeight: FontWeight.w600,
+                    showBottomText: false,
+                  ),
+                  GestureDetector(
+                    onTap: () => print('right arr'),
+                    child: CustomRoundButton(
+                      icon: Icons.keyboard_arrow_right,
+                      size: 32,
+                      isRound: true,
+                      hasShadow: false,
+                    ),
+                  ),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 12.0, bottom: 24),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text(
-                      'Bitrate:',
-                      style: TextStyle(
-                        color: Colors.black45,
-                      ),
-                    ),
-                    SliderTheme(
-                      data: SliderThemeData(
-                        inactiveTrackColor:
-                            CustomColor.mainAccent.withOpacity(0.4),
-                        trackHeight: 6,
-                        thumbShape:
-                            RoundSliderThumbShape(enabledThumbRadius: 14),
-                      ),
-                      child: Slider(
-                        activeColor: CustomColor.mainAccent,
-                        value: 0,
-                        onChanged: (value) {},
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Align(
-                alignment: Alignment.centerRight,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: CustomColor.darkGreenAccent,
-                    shape: CircleBorder(),
-                    padding: EdgeInsets.all(8),
-                  ),
-                  onPressed: () {},
-                  child: Icon(
-                    Icons.play_arrow,
-                    size: 32,
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
-        ),
+          Positioned(
+            bottom: 0,
+            child: AnimatedOpacity(
+              opacity: opacity,
+              duration: Duration(milliseconds: 500),
+              child: DragTarget<int>(
+                builder: (
+                  BuildContext context,
+                  List<dynamic> accepted,
+                  List<dynamic> rejected,
+                ) {
+                  return Container(
+                    width: fullWidthMargin,
+                    height: 160,
+                    child: Center(
+                      child: CustomRoundButton(
+                        icon: Icons.keyboard_arrow_down,
+                      ),
+                    ),
+                  );
+                },
+                onAccept: (int data) {
+                  List<String> temp = options;
+                  String last = options[data];
+                  temp.removeAt(data);
+                  temp.insert(0, last);
+                  setState(() => options = temp);
+                },
+              ),
+            ),
+          ),
+          ...options.asMap().entries.map(
+            (entry) {
+              int index = entry.key;
+              bool isLast = index == options.length - 1;
+              bool isDragged = opacity == 1 && !isLast;
+
+              return Positioned(
+                top: cardTopMargin + (75 * index),
+                child: AnimatedPadding(
+                  duration: Duration(milliseconds: 500),
+                  padding:
+                      EdgeInsets.only(top: isDragged ? (5 * (index + 1)) : 0),
+                  child: CustomCard(
+                    header: entry.value,
+                    index: index + 1,
+                    isLast: isLast,
+                    length: options.length,
+                    width: fullWidthMargin,
+                    onDrag: onDrag,
+                    onDragEnd: onDragEnd,
+                  ),
+                ),
+              );
+            },
+          ),
+        ],
       ),
     );
   }
